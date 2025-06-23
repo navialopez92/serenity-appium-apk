@@ -5,11 +5,16 @@ Feature: Validaciones a la APK (SwagLabs)
     When se muestra la pantalla inicial
     Then debe verse el título 'Swag Labs' y el botón 'LOGIN'
 
-  Scenario: (CA02) Validar inicio de sesion exitosamente
+  Scenario Outline: (CA02) Validar inicio de sesion exitosamente
     Given estamos en la pantalla inicial
-    When ingresamos usuario <usuario> y contraseña <contraseña>
+    When ingresamos usuario "<usuario>" y contraseña "<contrasena>"
     And pulsamos “LOGIN”
     Then debe mostrarse la lista de productos
+
+    Examples:
+      | usuario       | contrasena      |
+      | standar_user  | secret_sauce    |
+
 
   Scenario: (CA03) Validar que se adicione un producto al carrito
     Given vemos la lista de productos
@@ -32,7 +37,7 @@ Feature: Validaciones a la APK (SwagLabs)
     When abrimos el menú lateral y pulsamos “About”
     Then debe mostrarse la sección con texto “Swag Labs”
 
-  Scenario: (CA07) Validar que se muestre la seccion "Swag Labs"
+  Scenario: (CA07) Validar cierre de sesión exitosamente
     Given estamos logueados
     When pulsamos el botón “LOGOUT”
     Then regresa a la pantalla de login
